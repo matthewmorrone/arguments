@@ -1,3 +1,5 @@
+var log = console.log.bind(console);
+
 // I'll get around to learning expect.js/chai.js/mocha.js eventually
 function test() {
   arguments.push(4);
