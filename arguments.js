@@ -1,8 +1,3 @@
-// variation of: http://stackoverflow.com/questions/11851107/prototyping-arguments
-// except uses Object.defineProperty 
-
-var log = console.log.bind(console);
-
 // var defaultDescriptor =  {configurable: true, enumerable: false};
 Object.defineProperty(Object.prototype, "define", {configurable: true, enumerable: false, value: function(name, value) {
     Object.defineProperty(this, name, {configurable: true, enumerable: false, value: value});
