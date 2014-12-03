@@ -9,3 +9,4 @@ The only reason I know of not to modify `arguments` is the problem that this cod
 
 Obviously this only works on platforms with `Object.defineProperty`; until I include it here, you can use [es5-shims](https://github.com/es-shims/es5-shim) for elsewhere. 
 
+If more functions are added to `Array.prototype`, this should go after, unless I find a good mixin and hardwire it after every addition (or in the commented-out object.define). 
