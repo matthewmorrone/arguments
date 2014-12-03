@@ -1,16 +1,29 @@
-// var defaultDescriptor =  {configurable: true, enumerable: false};
-Object.defineProperty(Object.prototype, "define", {configurable: true, enumerable: false, value: function(name, value) {
-    Object.defineProperty(this, name, {configurable: true, enumerable: false, value: value});
-}});
+
+// Object.defineProperty(Object.prototype, "define", {configurable: true, enumerable: false, value: function(name, value) {
+//     Object.defineProperty(this, name, {configurable: true, enumerable: false, value: value});
+// }});
+
 (function () {
-    var i, methods;
+    var i, len, methods = Object.getOwnPropertyNames(Array.prototype);
+    // Object.getOwnPropertyNames(Array.prototype) = [
+    // "length", "constructor", "toString", "toLocaleString", "join", 
+    // "pop", "push", "concat", "reverse", "shift", 
+    // "unshift", "slice", "splice", "sort", "filter", 
+    // "forEach", "some", "every", "map", "indexOf", 
+    // "lastIndexOf", "reduce", "reduceRight", "entries", "keys"
+    // ]
+
     arguments.constructor.prototype = Array.prototype;
-    methods = ['concat', 'join', 'pop', 'push', 'reverse', 'shift', 'slice', 'sort', 'splice', 'toString', 'unshift'];
 
     // convert to use defineProperties? 
-    for (i = 0; i < methods.length; i += 1) {
+    for (i = 0, len = methods.length; i < len; i += 1) {
         if (arguments.constructor.prototype.hasOwnProperty(methods[i]) === false) {
-            arguments.constructor.prototype.define(methods[i], Array.prototype[methods[i]]);
+            // arguments.constructor.prototype.define(methods[i], Array.prototype[methods[i]]);
+            Object.defineProperty(arguments.constructor.prototype, methods[i], {
+                configurable: true, 
+                enumerable: false, 
+                value: Array.prototype[methods[i]]
+            });
         }
     }
 }());
