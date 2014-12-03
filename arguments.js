@@ -4,7 +4,7 @@
 // }});
 
 (function () {
-    var i, len, methods = Object.getOwnPropertyNames(Array.prototype);
+    var i, len, A = Array.prototype, methods = Object.getOwnPropertyNames(A);
     // Object.getOwnPropertyNames(Array.prototype) = [
     // "length", "constructor", "toString", "toLocaleString", "join", 
     // "pop", "push", "concat", "reverse", "shift", 
@@ -13,7 +13,7 @@
     // "lastIndexOf", "reduce", "reduceRight", "entries", "keys"
     // ]
 
-    arguments.constructor.prototype = Array.prototype;
+    arguments.constructor.prototype = A;
 
     // convert to use defineProperties? 
     for (i = 0, len = methods.length; i < len; i += 1) {
@@ -22,8 +22,9 @@
             Object.defineProperty(arguments.constructor.prototype, methods[i], {
                 configurable: true, 
                 enumerable: false, 
-                value: Array.prototype[methods[i]]
+                value: A[methods[i]]
             });
         }
     }
 }());
+
