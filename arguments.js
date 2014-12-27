@@ -9,7 +9,7 @@
             });
         }
         if (NodeList.prototype.hasOwnProperty(methods[i]) === false) {
-            Object.defineProperty( NodeList.prototype, methods[i], {
+            Object.defineProperty(NodeList.prototype, methods[i], {
                 configurable: true, 
                 enumerable: false, 
                 value: Array.prototype[methods[i]]
